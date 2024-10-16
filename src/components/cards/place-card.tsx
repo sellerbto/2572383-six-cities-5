@@ -1,5 +1,14 @@
+import {MockOffer, MockReview} from '../../mocks/offers.ts';
 
-export default function PlaceCard() {
+function getAverageRatingPercentage(reviews: MockReview[]) {
+  if (reviews.length === 0) {
+    return 0;
+  }
+  const totalStars = reviews.reduce((sum, review) => sum + review.stars, 0);
+  return (totalStars / reviews.length) * 20;
+}
+
+export default function PlaceCard(props: MockOffer) {
   return (
     <article className="cities__card place-card">
       <div className="place-card__mark">
@@ -19,7 +28,7 @@ export default function PlaceCard() {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">€120</b>
+            <b className="place-card__price-value">€{props.price}</b>
             <span className="place-card__price-text">
                         /&nbsp;night
             </span>
@@ -40,16 +49,20 @@ export default function PlaceCard() {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}/>
+            <span
+              style={{
+                width: `${getAverageRatingPercentage(props.reviews)}%`
+              }}
+            />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <a href="#">
-            Beautiful &amp; luxurious apartment at great location
+            {props.name}
           </a>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{props.type}</p>
       </div>
     </article>
   );

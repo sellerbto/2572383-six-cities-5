@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MockOffer} from '../../mocks/offers.ts';
 
 import MainPage from '../../pages/main/main-page.tsx';
 import LoginPage from '../../pages/login/login-page.tsx';
@@ -7,7 +8,7 @@ import OfferPage from '../../pages/offer/offer-page.tsx';
 import NotFoundPage from '../../pages/404/notfound-page.tsx';
 import PrivateRoute from './private-route.tsx';
 
-export default function App(props: { placesCount: number }) {
+export default function App(props: { placesCount: number, mockOffers: MockOffer[]}) {
   const isAuthorized = false;
 
   return (

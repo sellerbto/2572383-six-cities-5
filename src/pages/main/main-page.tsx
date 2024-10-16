@@ -1,4 +1,5 @@
-import PlaceCard from '../../app/cards/place-card.tsx';
+import PlaceCard from '../../components/cards/place-card.tsx';
+
 
 export default function MainPage(props: {placesCount: number}) {
   return (
